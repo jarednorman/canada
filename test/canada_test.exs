@@ -21,33 +21,23 @@ end
 defmodule CanadaTest do
   use ExUnit.Case
 
-  def admin_user(), do: %User{admin: true, id: 2}
+  def admin_user(), do: %User{admin: true, id: 1}
   def user(), do: %User{id: 2}
   def other_user(), do: %User{id: 3}
 
-  def post(), do: %Post{}
-  def user_post() do
+  def post() do
     %Post{user_id: user.id}
   end
 
-  test "it identifies when subject can read a resource" do
+  test "it identifies whether subject can read a resource" do
     assert admin_user |> Can.read? post
+    assert user |> Can.read? post
+    refute other_user |> Can.read? post
   end
 
-  test "it identifies when subject can't read a resource" do
-    refute user |> Can.read? post
-  end
-
-  test "it identifies when a subject can update a resource" do
+  test "it identifies whether a subject can update a resource" do
     assert admin_user |> Can.update? post
-  end
-
-  test "it identifies when a subject can't update a resource" do
-    refute user |> Can.update? post
-  end
-
-  test "it respects more complex permissions" do
-    assert user |> Can.update? user_post
-    refute other_user |> Can.update? user_post
+    assert user |> Can.update? post
+    refute other_user |> Can.update? post
   end
 end
