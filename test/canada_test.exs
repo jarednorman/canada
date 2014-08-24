@@ -1,8 +1,13 @@
 defmodule User do
-  defstruct admin: false
+  defstruct admin: false, id: nil
+end
+
+defmodule Post do
+  defstruct user_id: nil
 end
 
 defimpl Canada.Can, for: User do
+  def can?(%User{id: user_id}, :update, %Post{user_id: user_id}), do: true
   def can?(%User{admin: admin}, :read, _), do: admin
   def can?(%User{admin: admin}, :update, _), do: admin
 end
@@ -14,23 +19,33 @@ end
 defmodule CanadaTest do
   use ExUnit.Case
 
-  def admin_user(), do: %User{admin: true}
-  def normal_user(), do: %User{}
-  def resource(), do: %{}
+  def admin_user(), do: %User{admin: true, id: 2}
+  def user(), do: %User{id: 2}
+  def other_user(), do: %User{id: 3}
+
+  def post(), do: %Post{}
+  def user_post() do
+    %Post{user_id: user.id}
+  end
 
   test "it identifies when subject can read a resource" do
-    assert admin_user |> Can.read? resource
+    assert admin_user |> Can.read? post
   end
 
   test "it identifies when subject can't read a resource" do
-    refute normal_user |> Can.read? resource
+    refute user |> Can.read? post
   end
 
   test "it identifies when a subject can update a resource" do
-    assert admin_user |> Can.update? resource
+    assert admin_user |> Can.update? post
   end
 
   test "it identifies when a subject can't update a resource" do
-    refute normal_user |> Can.update? resource
+    refute user |> Can.update? post
+  end
+
+  test "it respects more complex permissions" do
+    assert user |> Can.update? user_post
+    refute other_user |> Can.update? user_post
   end
 end
