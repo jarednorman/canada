@@ -1,5 +1,5 @@
 defmodule User do
-  defstruct admin: false, id: nil
+  defstruct admin: false, id: nil, verified: false
 end
 
 defmodule Post do
@@ -13,7 +13,7 @@ defimpl Canada.Can, for: User do
   def can?(%User{admin: admin}, action, _)
     when action in [:update, :read, :destroy], do: admin
 
-  def can?(%User{admin: admin}, :create, Post), do: admin
+  def can?(%User{verified: verified}, :create, Post), do: verified
 end
 
 defmodule Can do
@@ -23,13 +23,11 @@ end
 defmodule CanadaTest do
   use ExUnit.Case
 
-  def admin_user(), do: %User{admin: true, id: 1}
-  def user(), do: %User{id: 2}
+  def admin_user(), do: %User{admin: true, id: 1, verified: true}
+  def user(), do: %User{id: 2, verified: true}
   def other_user(), do: %User{id: 3}
 
-  def post() do
-    %Post{user_id: user.id}
-  end
+  def post(), do: %Post{user_id: user.id}
 
   test "it identifies whether subject can read a resource" do
     assert admin_user |> Can.read? post
@@ -51,7 +49,7 @@ defmodule CanadaTest do
 
   test "it identifies whether a subject can create a type of resource" do
     assert admin_user |> Can.create? Post
-    refute user |> Can.create? Post
+    assert user |> Can.create? Post
     refute other_user |> Can.create? Post
   end
 end
