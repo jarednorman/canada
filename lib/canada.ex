@@ -9,6 +9,14 @@ defmodule Canada do
       def update?(subject, resource) do
         Can.can?(subject, :update, resource)
       end
+
+      def destroy?(subject, resource) do
+        Can.can?(subject, :destroy, resource)
+      end
+
+      def create?(subject, resource) do
+        Can.can?(subject, :create, resource)
+      end
     end
   end
 end
