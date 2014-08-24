@@ -7,9 +7,11 @@ defmodule Post do
 end
 
 defimpl Canada.Can, for: User do
-  def can?(%User{id: user_id}, :update, %Post{user_id: user_id}), do: true
-  def can?(%User{admin: admin}, :read, _), do: admin
-  def can?(%User{admin: admin}, :update, _), do: admin
+  def can?(%User{id: user_id}, action, %Post{user_id: user_id})
+    when action in [:update, :read], do: true
+
+  def can?(%User{admin: admin}, action, _)
+    when action in [:update, :read], do: admin
 end
 
 defmodule Can do
