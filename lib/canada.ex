@@ -1,21 +1,13 @@
 defmodule Canada do
-  defmacro __using__(_) do
-    alias Canada.Can
-    quote do
-      def read?(subject, resource) do
-        Can.can?(subject, :read, resource)
-      end
-
-      def update?(subject, resource) do
-        Can.can?(subject, :update, resource)
-      end
-
-      def destroy?(subject, resource) do
-        Can.can?(subject, :destroy, resource)
-      end
-
-      def create?(subject, resource) do
-        Can.can?(subject, :create, resource)
+  @default_actions [:create, :read, :update, :destroy]
+  defmacro __using__(opts) do
+    custom_actions = Keyword.get(opts, :custom_actions, [])
+    Enum.concat(@default_actions, custom_actions)
+    |> Enum.map fn(action) ->
+      quote do
+        def unquote(String.to_atom("#{action}?"))(subject, resource) do
+          Canada.Can.can?(subject, unquote(action), resource)
+        end
       end
     end
   end

@@ -8,16 +8,16 @@ end
 
 defimpl Canada.Can, for: User do
   def can?(%User{id: user_id}, action, %Post{user_id: user_id})
-    when action in [:update, :read, :destroy], do: true
+    when action in [:update, :read, :destroy, :touch], do: true
 
   def can?(%User{admin: admin}, action, _)
-    when action in [:update, :read, :destroy], do: admin
+    when action in [:update, :read, :destroy, :touch], do: admin
 
   def can?(%User{verified: verified}, :create, Post), do: verified
 end
 
 defmodule Can do
-  use Canada
+  use Canada, custom_actions: [:touch]
 end
 
 defmodule CanadaTest do
@@ -28,6 +28,12 @@ defmodule CanadaTest do
   def other_user(), do: %User{id: 3}
 
   def post(), do: %Post{user_id: user.id}
+
+  test "it identifies permissions based on custom actions" do
+    assert admin_user |> Can.touch? post
+    assert user |> Can.touch? post
+    refute other_user |> Can.touch? post
+  end
 
   test "it identifies whether subject can read a resource" do
     assert admin_user |> Can.read? post
