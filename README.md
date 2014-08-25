@@ -5,6 +5,25 @@ Canada provides a friendly interface for making easy use of
 [Elixir](http://elixir-lang.org/)'s excellent pattern matching to create
 readable declarative permission rules.
 
+Installation
+------------
+
+Add it to your deps list in your `mix.exs`. You want the latest release?
+
+```elixir
+defp deps do
+  [{:canada, "~> 0.0.1"}]
+end
+```
+
+You want the latest master?
+
+```elixir
+defp deps do
+  [{:canada, github: "jarednorman/canada"}]
+end
+```
+
 Becoming Canadian
 -----------------
 
@@ -24,10 +43,11 @@ end
 
 To make use of Canada, you need to implement the `Canada.Can` protocol
 (defining whatever rules you need) for the "subject" resource (your User struct
-in this case) and then create a `Can` module for you to call into.
+in this case) and then create a `Can` module for you to call into. This looks
+like the following.
 
-We're going to define an extra action on top of the default CRUD actions called
-`:touch`. It might look like this.
+Note: This also defines an additional, custom action on top of the default CRUD
+actions called `:touch`.
 
 ```elixir
 defimpl Canada.Can, for: User do
