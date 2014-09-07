@@ -43,11 +43,7 @@ end
 
 To make use of Canada, you need to implement the `Canada.Can` protocol
 (defining whatever rules you need) for the "subject" resource (your User struct
-in this case) and then create a `Can` module for you to call into. This looks
-like the following.
-
-Note: This also defines an additional, custom action on top of the default CRUD
-actions called `:touch`.
+in this case).
 
 ```elixir
 defimpl Canada.Can, for: User do
@@ -59,17 +55,15 @@ defimpl Canada.Can, for: User do
 
   def can?(%User{}, :create, Post), do: true
 end
-
-defmodule Can do
-  use Canada, custom_actions: [:touch]
-end
 ```
 
 With this in place, you're good to start testing permissions wherever you need
-to.
+to, just remember to import the can? macro.
 
 ```elixir
-if some_user |> Can.read? some_post do
+import Canada, [can?: 2]
+
+if some_user |> can? read(some_post) do
   # render the post
 else
   # raise a 403 or something
