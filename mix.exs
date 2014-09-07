@@ -4,7 +4,7 @@ defmodule Canada.Mixfile do
   def project do
     [app: :canada,
      version: "1.0.0-dev",
-     elixir: "~> 0.15.1",
+     elixir: "~> 1.0.0-rc1",
      package: package,
      description: """
        A DSL for declarative permissions

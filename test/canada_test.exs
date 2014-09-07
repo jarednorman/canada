@@ -16,12 +16,9 @@ defimpl Canada.Can, for: User do
   def can?(%User{verified: verified}, :create, Post), do: verified
 end
 
-defmodule Can do
-  use Canada, custom_actions: [:touch]
-end
-
 defmodule CanadaTest do
   use ExUnit.Case
+  import Canada, only: [can?: 2]
 
   def admin_user(), do: %User{admin: true, id: 1, verified: true}
   def user(), do: %User{id: 2, verified: true}
@@ -30,32 +27,32 @@ defmodule CanadaTest do
   def post(), do: %Post{user_id: user.id}
 
   test "it identifies permissions based on custom actions" do
-    assert admin_user |> Can.touch? post
-    assert user |> Can.touch? post
-    refute other_user |> Can.touch? post
+    assert admin_user |> can? touch(post)
+    assert user |> can? touch(post)
+    refute other_user |> can? touch(post)
   end
 
   test "it identifies whether subject can read a resource" do
-    assert admin_user |> Can.read? post
-    assert user |> Can.read? post
-    refute other_user |> Can.read? post
+    assert admin_user |> can? read(post)
+    assert user |> can? read(post)
+    refute other_user |> can? read(post)
   end
 
   test "it identifies whether a subject can update a resource" do
-    assert admin_user |> Can.update? post
-    assert user |> Can.update? post
-    refute other_user |> Can.update? post
+    assert admin_user |> can? update(post)
+    assert user |> can? update(post)
+    refute other_user |> can? update(post)
   end
 
   test "it identifies whether a subject can destroy a resource" do
-    assert admin_user |> Can.destroy? post
-    assert user |> Can.destroy? post
-    refute other_user |> Can.destroy? post
+    assert admin_user |> can? destroy(post)
+    assert user |> can? destroy(post)
+    refute other_user |> can? destroy(post)
   end
 
   test "it identifies whether a subject can create a type of resource" do
-    assert admin_user |> Can.create? Post
-    assert user |> Can.create? Post
-    refute other_user |> Can.create? Post
+    assert admin_user |> can? create(Post)
+    assert user |> can? create(Post)
+    refute other_user |> can? create(Post)
   end
 end
