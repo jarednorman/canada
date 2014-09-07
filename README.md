@@ -12,7 +12,7 @@ Add it to your deps list in your `mix.exs`. You want the latest release?
 
 ```elixir
 defp deps do
-  [{:canada, "~> 0.0.1"}]
+  [{:canada, "~> 1.0.0"}]
 end
 ```
 

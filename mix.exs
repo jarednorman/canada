@@ -3,7 +3,7 @@ defmodule Canada.Mixfile do
 
   def project do
     [app: :canada,
-     version: "1.0.0-dev",
+     version: "1.0.0",
      elixir: "~> 1.0.0-rc1",
      package: package,
      description: """
