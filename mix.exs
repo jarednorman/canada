@@ -6,6 +6,7 @@ defmodule Canada.Mixfile do
      version: "1.0.0",
      elixir: "~> 1.0",
      package: package,
+     consolidate_protocols: Mix.env != :test,
      description: """
        A DSL for declarative permissions
      """,
