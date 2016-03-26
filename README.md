@@ -2,10 +2,10 @@ Canada: _Define you some permissions_
 =====================================
 
 **NOTE:** If you're concerned by the fact that this repository has no activity
-and hasn't been updated, don't be. The functionality this package provides is
-very simple, it has no dependencies, and the Elixir language hasn't changed in
-any way that would break it. It still works just as well as when I first wrote it.
-:smiley:
+lately and hasn't had a release since `v1.0.0`, don't be. The functionality
+this package provides is very simple, it has no dependencies, and the Elixir
+language hasn't changed in any way that would break it. It still works just as
+well as when I first wrote it. :smiley:
 
 Canada provides a friendly interface for making easy use of
 [Elixir](http://elixir-lang.org/)'s excellent pattern matching to create
