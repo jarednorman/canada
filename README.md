@@ -5,6 +5,10 @@ Canada provides a friendly interface for making easy use of
 [Elixir](http://elixir-lang.org/)'s excellent pattern matching to create
 readable declarative permission rules.
 
+If you're looking for something that fills more of what CanCan would provide
+you in a Rails application you should have a look at
+[Canary](https://github.com/cpjk/canary) which adds Ecto/Plug support.
+
 Installation
 ------------
 
