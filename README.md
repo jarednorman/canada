@@ -76,7 +76,7 @@ import Canada, [can?: 2]
 if some_user |> can? read(some_post) do
   # render the post
 else
-  # raise a 403 or something
+  # sorry (raise a 403)
 end
 ```
 
