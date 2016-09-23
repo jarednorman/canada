@@ -10,7 +10,8 @@ defmodule Canada.Mixfile do
      description: """
        A DSL for declarative permissions
      """,
-     deps: deps]
+     deps: deps,
+     docs: docs]
   end
 
   def package do
@@ -25,5 +26,9 @@ defmodule Canada.Mixfile do
 
   defp deps do
     [{:ex_doc, ">= 0.0.0", only: :dev}]
+  end
+
+  defp docs do
+    [extras: ["README.md"]]
   end
 end
