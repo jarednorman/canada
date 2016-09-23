@@ -71,7 +71,7 @@ With this in place, you're good to start testing permissions wherever you need
 to, just remember to import the can? macro.
 
 ```elixir
-import Canada, [can?: 2]
+import Canada, only: [can?: 2]
 
 if some_user |> can? read(some_post) do
   # render the post
