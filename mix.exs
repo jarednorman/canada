@@ -5,13 +5,13 @@ defmodule Canada.Mixfile do
     [app: :canada,
      version: "1.0.1",
      elixir: "~> 1.0",
-     package: package,
+     package: package(),
      consolidate_protocols: Mix.env != :test,
      description: """
        A DSL for declarative permissions
      """,
-     deps: deps,
-     docs: docs]
+     deps: deps(),
+     docs: docs()]
   end
 
   def package do
