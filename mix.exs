@@ -15,7 +15,8 @@ defmodule Canada.Mixfile do
   end
 
   def package do
-    [contributors: ["Jared Norman"],
+    [maintainers: ["Jared Norman"],
+     contributors: ["Jared Norman"],
      licenses: ["MIT"],
      links: %{github: "https://github.com/jarednorman/canada"}]
   end
