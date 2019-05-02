@@ -16,6 +16,10 @@ defimpl Canada.Can, for: User do
   def can?(%User{verified: verified}, :create, Post), do: verified
 end
 
+defimpl Canada.Can, for: Any do
+  def can?(_subject, _action, _resource), do: false
+end
+
 defmodule CanadaTest do
   use ExUnit.Case
   import Canada, only: [can?: 2]
@@ -54,5 +58,13 @@ defmodule CanadaTest do
     assert admin_user() |> can?(create(Post))
     assert user() |> can?(create(Post))
     refute other_user() |> can?(create(Post))
+  end
+
+  describe "authorizing 'Any' other resource" do
+    test "accepts any other resource" do
+      refute nil |> can?(touch(Post))
+      refute "" |> can?(touch(Post))
+      refute %{} |> can?(touch(Post))
+    end
   end
 end
