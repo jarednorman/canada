@@ -3,7 +3,7 @@ defmodule Canada.Mixfile do
 
   def project do
     [app: :canada,
-     version: "1.0.2",
+     version: "2.0.0",
      elixir: "~> 1.0",
      package: package(),
      consolidate_protocols: Mix.env != :test,
