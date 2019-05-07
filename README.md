@@ -1,11 +1,10 @@
 Canada: _Define you some permissions_
 =====================================
 
-**NOTE:** If you're concerned by the fact that this repository has no activity
-lately and hasn't had a release since `v1.0.1`, don't be. The functionality
-this package provides is very simple, it has no dependencies, and the Elixir
-language hasn't changed in any way that would break it. It still works just as
-well as when I first wrote it. :smiley:
+**NOTE:** If you're concerned by the fact that this repository has very little
+activity, don't be. The functionality this package provides is very simple, it
+has no dependencies, and the Elixir language hasn't changed in any way that
+would break it. It still works just as well as when I first wrote it. :smiley:
 
 Canada provides a friendly interface for making easy use of
 [Elixir](http://elixir-lang.org/)'s excellent pattern matching to create
@@ -22,7 +21,7 @@ Add it to your deps list in your `mix.exs`. You want the latest release?
 
 ```elixir
 defp deps do
-  [{:canada, "~> 1.0.1"}]
+  [{:canada, "~> 2.0"}]
 end
 ```
 
