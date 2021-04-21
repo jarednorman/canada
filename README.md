@@ -1,10 +1,17 @@
 Canada: _Define you some permissions_
 =====================================
 
-**NOTE:** If you're concerned by the fact that this repository has very little
-activity, don't be. The functionality this package provides is very simple, it
-has no dependencies, and the Elixir language hasn't changed in any way that
-would break it. It still works just as well as when I first wrote it. :smiley:
+[![Module Version](https://img.shields.io/hexpm/v/canada.svg)](https://hex.pm/packages/canada)
+[![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/canada/)
+[![Total Download](https://img.shields.io/hexpm/dt/canada.svg)](https://hex.pm/packages/canada)
+[![License](https://img.shields.io/hexpm/l/canada.svg)](https://github.com/jarednorman/canada/blob/master/LICENSE)
+[![Last Updated](https://img.shields.io/github/last-commit/jarednorman/canada.svg)](https://github.com/jarednorman/canada/commits/master)
+
+> **NOTE:** If you're concerned by the fact that this repository has very
+> little activity, don't be. The functionality this package provides is very
+> simple, it has no dependencies, and the Elixir language hasn't changed in any
+> way that would break it. It still works just as well as when I first wrote
+> it. :smiley:
 
 Canada provides a friendly interface for making easy use of
 [Elixir](http://elixir-lang.org/)'s excellent pattern matching to create
@@ -17,19 +24,23 @@ you in a Rails application you should have a look at
 Installation
 ------------
 
-Add it to your deps list in your `mix.exs`. You want the latest release?
+Add it to your deps list in your `mix.exs` if you want the latest release?
 
 ```elixir
 defp deps do
-  [{:canada, "~> 2.0"}]
+  [
+    {:canada, "~> 2.0"}
+  ]
 end
 ```
 
-You want the latest master?
+Or you want the latest greatest master?
 
 ```elixir
 defp deps do
-  [{:canada, github: "jarednorman/canada"}]
+  [
+    {:canada, github: "jarednorman/canada"}
+  ]
 end
 ```
 
@@ -87,3 +98,9 @@ in Ruby, but in Elixir." I would be entirely unsurprised if myself or someone
 else comes up with a more "functional" solution. That said, permissions are
 necessarily a matter that governs conditional logic, so I currently see this as
 a reasonable solution.
+
+## Copyright and License
+
+Copyright (c) 2014 Jared Norman
+
+This software is licensed under [the MIT license](./LICENSE.md).
